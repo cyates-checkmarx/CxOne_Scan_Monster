@@ -3,6 +3,7 @@ import requests
 import argparse
 import time
 import json
+import random
 
 import datetime
 from urllib.parse import urlparse
@@ -88,15 +89,35 @@ def authenticate():
         print(f"An error occurred during authentication: {e}")
         sys.exit(1)
 
-def read_repo_urls(file_path):
+def read_repo_urls(file_path, scan_quantity):
     try:
         if debug:
             print(f"Reading repository URLs from file: {file_path}")
+        repo_list = []
+        total_percentage = 0
         with open(file_path, 'r') as file:
-            repo_urls = [line.strip() for line in file]
+            data = json.load(file)
+            for dict in data:
+                for key in dict:
+                    if key.split("_")[1] == "repo":
+                        repo_name = dict.get(key)
+                    elif key.split("_")[1] == "percentage":
+                        percentage = float(dict.get(key))
+                        total_percentage += percentage
+                    else:
+                        print(f"Error key {key} provided")
+                    quantity = round(scan_quantity*percentage)
+                
+                repo_list += [repo_name]*quantity
+                if debug:
+                    print(f"{quantity} scans will be executed for {repo_name}")           
+        
+        random.shuffle(repo_list)
+        if total_percentage != 1:
+            raise Exception("Percentages do not total to 100")
         if debug:
-            print(f"Found {len(repo_urls)} repository URLs")
-        return repo_urls
+            print(f"Found {len(repo_list)} repository URLs {repo_list}")
+        return repo_list
     except Exception as e:
         print(f"An error occurred while reading the repository URLs: {e}")
         sys.exit(1)
@@ -227,7 +248,6 @@ def check_project_exists(project_name):
     except requests.exceptions.RequestException as e:
         print(f"An error occurred while checking for project existence: {e}")
         sys.exit(1)
-
 
 def create_project(project_name, repo_url, main_branch):
     if debug:
@@ -391,6 +411,8 @@ def main():
     parser.add_argument('--gitlab_token', required=False, help='GitLab personal access token')
     parser.add_argument('--bitbucket_token', required=False, help='Bitbucket personal access token')
     parser.add_argument('--azure_token', required=False, help='Azure DevOps personal access token')
+    parser.add_argument('--duration', required = True, type=int, help='Number of minutes to execute scans')
+    parser.add_argument('--scan_quantity', required = True, type=int, help='Number of scans')
 
     def parse_sast_arg(value):
         if value is None:
@@ -403,7 +425,6 @@ def main():
     parser.add_argument('--sca', action='store_true', help='Enable SCA scan.')
     parser.add_argument('--iac', action='store_true', help='Enable IaC scan.')
     parser.add_argument('--api', action='store_true', help='Enable API scan.')
-    parser.add_argument('--space_scans', type=int, help='Number of minutes to wait between scans')
     parser.add_argument('--debug', action='store_true', help='Enable debug output')
 
     args = parser.parse_args()
@@ -430,8 +451,8 @@ def main():
     if scan_types.get('api') and not scan_types.get('sast'):
         scan_types['sast'] = True
     
-    # Read in repos
-    repo_urls = read_repo_urls(args.repo_file)
+    # Read in repos and verify percentage
+    repo_urls = read_repo_urls(args.repo_file, args.scan_quantity)
     
     # Provide output to the user
     enabled_scans = ', '.join([k.upper() for k, v in scan_types.items() if v])

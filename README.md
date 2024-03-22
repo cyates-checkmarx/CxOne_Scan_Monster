@@ -19,6 +19,8 @@ python scan_monster.py --base_url BASE_URL --tenant_name TENANT_NAME --api_key A
 - `--tenant_name`: Your tenant name in Checkmarx One.
 - `--api_key`: Your API key for authenticating with the Checkmarx One APIs.
 - `--repo_file`: Path to a file containing a list of repository URLs to scan.
+- `--duration MINUTES`: Define a waiting period in minutes between each scan.
+- `--scan_quantity`: Define a total quantity of scans.
 
 ### Optional Arguments
 
@@ -31,7 +33,6 @@ python scan_monster.py --base_url BASE_URL --tenant_name TENANT_NAME --api_key A
 - `--sca`: Enable SCA scan. (Flag, no value required)
 - `--iac`: Enable IaC scan. (Flag, no value required)
 - `--api`: Enable API scan. (Flag, no value required)
-- `--space_scans MINUTES`: Define a waiting period in minutes between each scan.
 - `--debug`: Enable debug output. (Flag, no value required)
 
 
@@ -54,8 +55,6 @@ python scan_monster.py --base_url BASE_URL --tenant_name TENANT_NAME --api_key A
 `https://github.com/appsecco/dvja`
 
   
-
-
 ## Usage Examples
 
 Initiate all types of scans on repositories listed in the file:
@@ -70,16 +69,16 @@ Initiate SAST and SCA scans with a preset for SAST:
 python scan_monster.py --base_url https://cxone.example.com --tenant_name mytenant --api_key 12345 --repo_file repos.txt --sast "MyCustomPreset" --sca
 ```
 
-Initiate scans with a waiting period of 5 minutes between each scan:
-
-```bash
-python scan_monster.py --base_url https://cxone.example.com --tenant_name mytenant --api_key 12345 --repo_file repos.txt --space_scans 5
-```
-
 Initiate scans with debug output:
 
 ```bash
 python scan_monster.py --base_url https://cxone.example.com --tenant_name mytenant --api_key 12345 --repo_file repos.txt --debug
+```
+
+Initiate scans with defined duration and scan quanitity:
+
+```bash
+python scan_monster.py --base_url https://cxone.example.com --tenant_name mytenant --api_key 12345 --repo_file repos.txt --duration 60 --scan_quantity 500
 ```
 
 ## Output

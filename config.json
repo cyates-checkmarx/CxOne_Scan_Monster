@@ -1,0 +1,26 @@
+[
+    {
+        "xs_percentage": ".27",
+        "xs_repo": "repo xs"
+    },
+    {
+        "s_percentage": ".25",
+        "s_repo": "repo s"
+    },
+    {
+        "m_percentage": ".25",
+        "m_repo": "repo m"
+    },
+    {
+        "l_percentage": ".13",
+        "l_repo": "repo l"
+    },
+    {
+        "xl_percentage": ".06",
+        "xl_repo": "repo xl"
+    },
+    {
+        "xxl_percentage": ".04",
+        "xxl_repo": "repo xxl"
+    }    
+]
