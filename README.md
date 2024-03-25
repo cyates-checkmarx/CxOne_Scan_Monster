@@ -10,7 +10,7 @@ Scan Monster is a powerful automation tool for initiating scans on multiple repo
 Execute the script using the following command line:
 
 ```bash
-python scan_monster.py --base_url BASE_URL --tenant_name TENANT_NAME --api_key API_KEY --repo_file REPO_FILE [OPTIONS]
+python scan_monster.py --base_url BASE_URL --tenant_name TENANT_NAME --api_key API_KEY --repo_file REPO_FILE --duration DURANTION --scan_quantity QUANTITY [OPTIONS]
 ```
 
 ### Required Arguments
@@ -61,25 +61,25 @@ python scan_monster.py --base_url BASE_URL --tenant_name TENANT_NAME --api_key A
 Initiate all types of scans on repositories listed in the file:
 
 ```bash
-python scan_monster.py --base_url https://cxone.example.com --tenant_name mytenant --api_key 12345 --repo_file repos.txt
+python scan_monster.py --base_url https://cxone.example.com --tenant_name mytenant --api_key 12345 --repo_file config.json --duration 60 --scan_quantity 500
 ```
 
 Initiate SAST and SCA scans with a preset for SAST:
 
 ```bash
-python scan_monster.py --base_url https://cxone.example.com --tenant_name mytenant --api_key 12345 --repo_file repos.txt --sast "MyCustomPreset" --sca
+python scan_monster.py --base_url https://cxone.example.com --tenant_name mytenant --api_key 12345 --repo_file config.json --duration 60 --scan_quantity 500 --sast "MyCustomPreset" --sca
 ```
 
 Initiate scans with debug output:
 
 ```bash
-python scan_monster.py --base_url https://cxone.example.com --tenant_name mytenant --api_key 12345 --repo_file repos.txt --debug
+python scan_monster.py --base_url https://cxone.example.com --tenant_name mytenant --api_key 12345 --repo_file config.json --duration 60 --scan_quantity 500 --debug
 ```
 
-Initiate scans with defined duration and scan quanitity:
+Initiate scans with a private repository:
 
 ```bash
-python scan_monster.py --base_url https://cxone.example.com --tenant_name mytenant --api_key 12345 --repo_file repos.txt --duration 60 --scan_quantity 500
+python scan_monster.py --base_url https://cxone.example.com --tenant_name mytenant --api_key 12345 --repo_file config.json --duration 60 --scan_quantity 500 --github_token 12345 --repo_username username
 ```
 
 ## Output
