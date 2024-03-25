@@ -1,26 +1,26 @@
 [
     {
-        "xs_percentage": ".5",
-        "xs_repo": "https://github.com/cyates-checkmarx/puppett-ruby-290k"
+        "xs_percentage": ".27",
+        "xs_repo": "https://github.com/cyates-checkmarx/book-store-.net-17k"
     },
     {
-        "s_percentage": ".5",
-        "s_repo": "https://github.com/stress-testing-internal/BookStore_.Net_17k"
+        "s_percentage": ".25",
+        "s_repo": "https://github.com/cyates-checkmarx/puppett-ruby-290k"
     },
     {
-        "m_percentage": ".0",
-        "m_repo": "repo m"
+        "m_percentage": ".25",
+        "m_repo": "https://github.com/cyates-checkmarx/dspace-312k"
     },
     {
-        "l_percentage": ".0",
-        "l_repo": "repo l"
+        "l_percentage": ".13",
+        "l_repo": "https://github.com/cyates-checkmarx/gensite-vbscript-752k"
     },
     {
-        "xl_percentage": ".0",
-        "xl_repo": "repo xl"
+        "xl_percentage": ".06",
+        "xl_repo": "https://github.com/cyates-checkmarx/zurmo-php-1.4m"
     },
     {
-        "xxl_percentage": ".0",
-        "xxl_repo": "repo xxl"
+        "xxl_percentage": ".04",
+        "xxl_repo": "https://github.com/cyates-checkmarx/android-2.7m"
     }    
 ]
