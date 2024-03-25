@@ -153,3 +153,23 @@
 2024-03-22 14:47:37,188:ERROR:An unexpected error occurred for repo xs: Unsupported platform for repository URL: repo xs
 2024-03-22 14:47:37,188:ERROR:An unexpected error occurred for repo m: Unsupported platform for repository URL: repo m
 2024-03-22 14:47:37,188:ERROR:An unexpected error occurred for repo s: Unsupported platform for repository URL: repo s
+2024-03-22 15:09:29,794:ERROR:Error: Received status code 404 from https://api.github.com/repos/stress-testing/BookStore_NET_17k
+2024-03-22 15:09:29,796:ERROR:Response text: {"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}
+2024-03-22 15:09:30,040:ERROR:Error: Received status code 404 from https://api.github.com/repos/stress-testing/BookStore_NET_17k
+2024-03-22 15:09:30,041:ERROR:Response text: {"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}
+2024-03-22 15:09:30,301:ERROR:Error: Received status code 404 from https://api.github.com/repos/stress-testing/puppett-ruby-290k
+2024-03-22 15:09:30,301:ERROR:Response text: {"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}
+2024-03-22 15:09:30,555:ERROR:Error: Received status code 404 from https://api.github.com/repos/stress-testing/puppett-ruby-290k
+2024-03-22 15:09:30,555:ERROR:Response text: {"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}
+2024-03-22 15:09:30,804:ERROR:Error: Received status code 404 from https://api.github.com/repos/stress-testing/puppett-ruby-290k
+2024-03-22 15:09:30,804:ERROR:Response text: {"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}
+2024-03-22 15:09:31,038:ERROR:Error: Received status code 404 from https://api.github.com/repos/stress-testing/puppett-ruby-290k
+2024-03-22 15:09:31,039:ERROR:Response text: {"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}
+2024-03-22 15:09:31,276:ERROR:Error: Received status code 404 from https://api.github.com/repos/stress-testing/puppett-ruby-290k
+2024-03-22 15:09:31,276:ERROR:Response text: {"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}
+2024-03-22 15:09:31,527:ERROR:Error: Received status code 404 from https://api.github.com/repos/stress-testing/BookStore_NET_17k
+2024-03-22 15:09:31,527:ERROR:Response text: {"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}
+2024-03-22 15:09:31,772:ERROR:Error: Received status code 404 from https://api.github.com/repos/stress-testing/BookStore_NET_17k
+2024-03-22 15:09:31,772:ERROR:Response text: {"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}
+2024-03-22 15:09:32,022:ERROR:Error: Received status code 404 from https://api.github.com/repos/stress-testing/BookStore_NET_17k
+2024-03-22 15:09:32,023:ERROR:Response text: {"message":"Not Found","documentation_url":"https://docs.github.com/rest/repos/repos#get-a-repository"}

@@ -296,7 +296,7 @@ def create_project(project_name, repo_url, main_branch):
     
     return project_id
 
-def start_scan(repo_info, repo_url, scan_types):
+def start_scan(repo_info, repo_url, scan_types, github_token=None, gitlab_token=None, bitbucket_token=None, azure_token=None, username=None):
     if debug:
         print(f"Starting scan: {repo_url}")
 
@@ -348,13 +348,25 @@ def start_scan(repo_info, repo_url, scan_types):
         }
         config.append(api_config)
 
+    #Build credentials if private repository
+    if github_token or gitlab_token or bitbucket_token or azure_token:
+        if username:
+            credentials = {
+                "username": username,
+                "type": "JWT",
+                "value": github_token
+            }
+        else:
+            print(f"An error occurred while starting the scan: parameter --repo_username was not provided for a private repository")
+
     # Build the handler object for the request payload
     handler = {
         "repoUrl": repo_url,
         "branch": repo_info['primary_branch'],
         "tags": {
             "ScanMonster Scan": ""
-            }
+            },
+        "credentials": credentials
     }
 
     # Build the project object for the request payload
@@ -408,6 +420,7 @@ def main():
     parser.add_argument('--api_key', required=True, help='API key for authentication')
     parser.add_argument('--repo_file', required=True, help='File containing list of repository URLs')
     parser.add_argument('--github_token', required=False, help='GitHub personal access token')
+    parser.add_argument('--repo_username', required=False, help='GitHub username')
     parser.add_argument('--gitlab_token', required=False, help='GitLab personal access token')
     parser.add_argument('--bitbucket_token', required=False, help='Bitbucket personal access token')
     parser.add_argument('--azure_token', required=False, help='Azure DevOps personal access token')
@@ -430,6 +443,7 @@ def main():
     args = parser.parse_args()
     base_url = args.base_url
     tenant_name = args.tenant_name
+    username = args.repo_username
     github_token = args.github_token
     gitlab_token = args.gitlab_token
     bitbucket_token = args.bitbucket_token
@@ -473,6 +487,8 @@ def main():
     started = 0
     
     # Iterate through repos to check if projects exist, create projects (if necessary), and start scans
+    scan_space = args.duration*60/len(repo_urls)
+    
     for index, repo_url in enumerate(repo_urls):
         if(debug):
             print(f"Preparing to scan repository {index + 1} of {len(repo_urls)}: {repo_url}")
@@ -489,14 +505,14 @@ def main():
         if repo_info['projectId'] is None:
             repo_info['projectId'] = create_project(repo_info['project_name'], repo_url, repo_info['primary_branch'])
 
-        start_scan(repo_info, repo_url, scan_types)
+        start_scan(repo_info, repo_url, scan_types, github_token, gitlab_token, bitbucket_token, azure_token, username)
         started += 1
 
-        # If space_scans is set and it's not the last repository, wait the specified time
-        if args.space_scans and index < len(repo_urls) - 1:
+        # If it's not the last repository, wait the specified time
+        if index < len(repo_urls) - 1:
             if debug:
-                print(f"Waiting {args.space_scans} minute(s) before starting the next scan...")
-            time.sleep(args.space_scans * 60)  # Wait time is in seconds, so multiply by 60
+                print(f"Waiting {scan_space} second(s) before starting the next scan...")
+            time.sleep(scan_space)  # Wait time is in seconds, so multiply by 60
     
     if errors > 0:
         print(f"Errors encountered with {errors} repositories; check error log for details")

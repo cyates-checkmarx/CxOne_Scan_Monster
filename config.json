@@ -1,26 +1,26 @@
 [
     {
-        "xs_percentage": ".27",
-        "xs_repo": "repo xs"
+        "xs_percentage": ".5",
+        "xs_repo": "https://github.com/cyates-checkmarx/puppett-ruby-290k"
     },
     {
-        "s_percentage": ".25",
-        "s_repo": "repo s"
+        "s_percentage": ".5",
+        "s_repo": "https://github.com/stress-testing-internal/BookStore_.Net_17k"
     },
     {
-        "m_percentage": ".25",
+        "m_percentage": ".0",
         "m_repo": "repo m"
     },
     {
-        "l_percentage": ".13",
+        "l_percentage": ".0",
         "l_repo": "repo l"
     },
     {
-        "xl_percentage": ".06",
+        "xl_percentage": ".0",
         "xl_repo": "repo xl"
     },
     {
-        "xxl_percentage": ".04",
+        "xxl_percentage": ".0",
         "xxl_repo": "repo xxl"
     }    
 ]

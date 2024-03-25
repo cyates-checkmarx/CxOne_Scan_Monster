@@ -25,6 +25,7 @@ python scan_monster.py --base_url BASE_URL --tenant_name TENANT_NAME --api_key A
 ### Optional Arguments
 
 - `--iam_base_url`: Optional IAM base URL. Defaults to the same as `base_url` if not provided.
+- `--repo_username`: Repository username.
 - `--github_token`: Personal access token for GitHub repositories.
 - `--gitlab_token`: Personal access token for GitLab repositories.
 - `--bitbucket_token`: Personal access token for Bitbucket repositories.

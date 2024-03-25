@@ -1,2 +1,0 @@
-https://github.com/snoopysecurity/dvws
-https://github.com/WebGoat/WebGoat
